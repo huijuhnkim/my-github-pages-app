@@ -48,19 +48,16 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                     className="bg-white rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden animate-fadeIn"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Header with diagonal lines pattern */}
+                    {/* Header with diagonal lines pattern and close button */}
                     <div
-                        className="relative h-48 flex items-center justify-between px-8"
+                        className="relative h-48 flex items-center justify-end px-8"
                         style={{
                             background: 'repeating-linear-gradient(45deg, #e5e5e5, #e5e5e5 10px, #f0f0f0 10px, #f0f0f0 20px)',
                         }}
                     >
-                        <h1 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: 'Inter, sans-serif' }}>
-                            {project.title}
-                        </h1>
                         <button
                             onClick={onBack}
-                            className="text-gray-600 hover:text-gray-900 transition-colors"
+                            className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors"
                         >
                             <X className="w-6 h-6" />
                         </button>
@@ -79,7 +76,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
 
                         {/* Title and Tags */}
                         <div className="mb-6">
-                            <h2 className="text-xl font-semibold text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
+                            <h2 className="text-2xl font-bold text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
                                 {project.title}
                             </h2>
                             <div className="flex flex-wrap gap-2">
