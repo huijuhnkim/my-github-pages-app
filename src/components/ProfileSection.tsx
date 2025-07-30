@@ -14,7 +14,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ personalInfo }) => {
                     <img
                         src={personalInfo.profilePic}
                         alt={personalInfo.name}
-                        className="w-40 h-40 rounded-full object-cover shadow-md"
+                        className="w-50 h-50 rounded-full object-cover shadow-md"
+                        style={{ width: '200px', height: '200px' }}
                     />
                 </div>
                 <div className="col-span-2 flex items-center">

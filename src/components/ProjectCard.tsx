@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 />
             </div>
             <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <h3 className="text-xl text-gray-800 mb-2" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700 }}>
                     {project.title}
                 </h3>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3 italic" style={{ fontFamily: 'Inter, sans-serif' }}>

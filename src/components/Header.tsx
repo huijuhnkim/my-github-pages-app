@@ -11,10 +11,10 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
     return (
         <header className="mb-12">
             <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-gray-800" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <h1 className="text-3xl text-gray-800" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700 }}>
                     {personalInfo.name}
                 </h1>
-                <div className="flex gap-12">
+                <div className="flex gap-6">
                     <a
                         href={personalInfo.socialLinks.linkedin}
                         target="_blank"

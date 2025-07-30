@@ -19,7 +19,7 @@ export const projects: Project[] = [
         thumbnail: 'https://huijuhnkim-portfolio-website.s3.us-east-2.amazonaws.com/thumbnail-MIDI-analysis-prediction-model.png',
         tags: ['Software Engineering', 'Audio'],
         fullDescription: 'Tokenize MIDI file using natural language processing techniques such as TF-IDF and regular expressions. Recognize chord progressions with machine learning techniques and frameworks such as LSTM and MusicBERT. Collaborated with a partner to develop the program, utilizing Git for version control and GitHub for code management.',
-        skills: 'Python, NumPy, PyTorch, Matplotlib',
+        skills: 'Python, NumPy, PyTorch, Matplotlib, MIDI Protocol, Music Theory',
         githubLink: 'https://github.com/huijuhnkim/midi-chord-prediction'
     },
 ];

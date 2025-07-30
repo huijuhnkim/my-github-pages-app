@@ -72,7 +72,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                             <div className="flex-1 p-8 overflow-y-auto">
                                 {/* Title and Tags */}
                                 <div className="mb-6">
-                                    <h2 className="text-2xl font-bold text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
+                                    <h2 className="text-2xl text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700 }}>
                                         {project.title}
                                     </h2>
                                     <div className="flex flex-wrap gap-2">
