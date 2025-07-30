@@ -47,47 +47,51 @@ const App: React.FC = () => {
 
   return (
       <div className="min-h-screen" style={{ backgroundColor: '#FAFAF8', fontFamily: 'Inter, sans-serif' }}>
-        {selectedProject ? (
+        {/* Main Content - Always rendered */}
+        <div className={`transition-all duration-300 ${selectedProject ? 'opacity-50' : 'opacity-100'}`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <Header personalInfo={personalInfo} />
+            <ProfileSection personalInfo={personalInfo} />
+            <FilterSection
+                tags={tags}
+                selectedTags={selectedTags}
+                searchQuery={searchQuery}
+                onTagToggle={toggleTag}
+                onSearchChange={setSearchQuery}
+            />
+
+            {/* Project Card Section */}
+            <section>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {filteredProjects.map(project => (
+                    <ProjectCard
+                        key={project.id}
+                        project={project}
+                        tags={tags}
+                        isHovered={hoveredCard === project.id}
+                        onHover={(isHovered) => setHoveredCard(isHovered ? project.id : null)}
+                        onClick={() => setSelectedProject(project)}
+                    />
+                ))}
+              </div>
+            </section>
+
+            {/* No results message */}
+            {filteredProjects.length === 0 && (
+                <div className="text-center py-12">
+                  <p className="text-gray-500">No projects found matching your criteria.</p>
+                </div>
+            )}
+          </div>
+        </div>
+
+        {/* Project Detail Modal - Rendered on top when selected */}
+        {selectedProject && (
             <ProjectDetail
                 project={selectedProject}
                 tags={tags}
                 onBack={() => setSelectedProject(null)}
             />
-        ) : (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <Header personalInfo={personalInfo} />
-              <ProfileSection personalInfo={personalInfo} />
-              <FilterSection
-                  tags={tags}
-                  selectedTags={selectedTags}
-                  searchQuery={searchQuery}
-                  onTagToggle={toggleTag}
-                  onSearchChange={setSearchQuery}
-              />
-
-              {/* Project Card Section */}
-              <section>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {filteredProjects.map(project => (
-                      <ProjectCard
-                          key={project.id}
-                          project={project}
-                          tags={tags}
-                          isHovered={hoveredCard === project.id}
-                          onHover={(isHovered) => setHoveredCard(isHovered ? project.id : null)}
-                          onClick={() => setSelectedProject(project)}
-                      />
-                  ))}
-                </div>
-              </section>
-
-              {/* No results message */}
-              {filteredProjects.length === 0 && (
-                  <div className="text-center py-12">
-                    <p className="text-gray-500">No projects found matching your criteria.</p>
-                  </div>
-              )}
-            </div>
         )}
       </div>
   );

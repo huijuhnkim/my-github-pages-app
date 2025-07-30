@@ -21,10 +21,10 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                                                      }) => {
     return (
         <section className="mb-12">
-            <div className="grid grid-cols-3 gap-8">
-                {/* Left Column - Tags (1/3 width) */}
-                <div className="col-span-1">
-                    <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-8">
+                {/* Left Column - Tags (50% width) */}
+                <div className="col-span-1 flex items-center">
+                    <div className="flex flex-wrap gap-2">
                         {tags.map(tag => (
                             <Tag
                                 key={tag.name}
@@ -37,8 +37,8 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                     </div>
                 </div>
 
-                {/* Right Column - Search Bar (2/3 width) */}
-                <div className="col-span-2 flex items-center">
+                {/* Right Column - Search Bar (50% width) */}
+                <div className="col-span-1 flex items-center">
                     <SearchBar
                         value={searchQuery}
                         onChange={onSearchChange}

@@ -11,13 +11,13 @@ interface TagProps {
 
 const Tag: React.FC<TagProps> = ({ tag, isSelected, onClick, size = 'medium' }) => {
     const sizeClasses = size === 'small'
-        ? 'px-3 py-1 text-xs'
-        : 'px-4 py-2 text-sm';
+        ? 'px-2 py-1 text-xs'
+        : 'px-3 py-1.5 text-sm';
 
     return (
         <button
             onClick={onClick}
-            className={`${sizeClasses} rounded-full font-medium transition-all duration-200 transform hover:scale-105`}
+            className={`${sizeClasses} rounded-full font-medium transition-all duration-200 transform hover:scale-105 whitespace-nowrap`}
             style={{
                 backgroundColor: isSelected ? tag.color : 'transparent',
                 color: isSelected ? 'white' : tag.color,
