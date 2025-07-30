@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ personalInfo }) => {
                 <h1 className="text-3xl font-bold text-gray-800" style={{ fontFamily: 'Inter, sans-serif' }}>
                     {personalInfo.name}
                 </h1>
-                <div className="flex gap-4">
+                <div className="flex gap-12">
                     <a
                         href={personalInfo.socialLinks.linkedin}
                         target="_blank"
