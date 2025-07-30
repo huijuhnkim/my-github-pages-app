@@ -13,6 +13,8 @@ export interface Project {
     fullDescription: string;
     skills: string;
     githubLink: string;
+    instagramLink?: string;
+    youtubeLink?: string;
 }
 
 export interface PersonalInfo {
