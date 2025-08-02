@@ -4,36 +4,52 @@ import { Project } from '../types';
 export const projects: Project[] = [
     {
         id: 1,
-        title: 'EPPA (Ensemble Part Performance Assistant)',
-        description: 'An iOS app that simplifies music practice for ensemble musicians by providing easy access to individual parts and accompaniments.',
+        title: 'EPPA (Expression Pedal Playback Assistant)',
+        description:
+            'EPPA transforms an affordable expression pedal into an intuitive playback controller for Logic Pro, making audio production more accessible for visually impaired musicians and engineers.',
         thumbnail: 'https://huijuhnkim-portfolio-website.s3.us-east-2.amazonaws.com/eppa-thumbnail-v2.jpg',
         tags: ['Audio', 'Software Engineering', 'Design'],
-        fullDescription: `EPPA (Ensemble Part Performance Assistant) is an innovative iOS application designed to help ensemble musicians practice more effectively. The app addresses a common challenge faced by musicians in orchestras, bands, and chamber groups: the difficulty of practicing individual parts without the full ensemble context.
-
-Key Features:
-- Access individual instrument parts from ensemble pieces
-- Play along with pre-recorded accompaniments
-- Adjustable tempo for practice sessions
-- Loop sections for focused practice
-- Built-in metronome synchronized with accompaniments
-- Support for various ensemble types (orchestra, band, chamber music)
-
-Technical Implementation:
-The app is built using Swift and SwiftUI, leveraging Core Audio for high-quality audio playback and synchronization. The architecture follows MVVM patterns to ensure clean separation of concerns and maintainability.
-
-EPPA makes it easier for musicians to prepare for rehearsals and performances by providing the context of other instruments while practicing alone. This is particularly valuable for musicians learning contemporary pieces where hearing harmonic context is crucial for understanding their part.
-
-The app includes a curated library of ensemble pieces with professionally recorded accompaniments, and supports importing of custom audio files for personalized practice sessions.`,
-        skills: 'Swift, SwiftUI, Core Audio, AVFoundation, MVVM Architecture, iOS Development',
+        fullDescription:
+            "EPPA transforms an affordable expression pedal into an intuitive playback controller for Logic Pro, making audio production more accessible for visually impaired musicians and engineers. This project was inspired by Dr. Abir Saha's research paper \"Understanding Audio Production Practices of People with Vision Impairments\", which highlights the accessibility challenges and high costs faced by blind audio professionals.\n" +
+            "\n" +
+            "🎯 Problem\n" +
+            "\n" +
+            "EPPA addresses two critical challenges identified in accessibility research:\n" +
+            "\n" +
+            "- Cost Barrier: Professional accessible control surfaces can cost upwards of $10,000\n" +
+            "- Complexity: Existing assistive technologies have steep learning curves that create additional barriers\n" +
+            "\n" +
+            "💡 Solution\n" +
+            "\n" +
+            "EPPA uses a simple, intuitive control scheme inspired by driving:\n" +
+            "\n" +
+            "- 80-100% (Gas): Full playback\n" +
+            "- 20-80% (Coasting): Solo current track\n" +
+            "- 0-20% (Brake): Stop playback\n" +
+            "\n" +
+            "⁇ Why Expression Pedals?\n" +
+            "\n" +
+            "- Affordable: Quality pedals start at $30 (vs $10,000+ for control surfaces)\n" +
+            "- Intuitive: Single-axis control mimics familiar gas pedal interaction\n" +
+            "- Accessible: Hands-free operation leaves hands available for instruments or keyboard navigation\n" +
+            "- Universal: Works with any standard expression pedal\n" +
+            "\n" +
+            "🚀 Features\n" +
+            "\n" +
+            "- Real-time MIDI device selection\n" +
+            "- Visual pedal position indicator with accessibility labels\n" +
+            "- Native Logic Pro integration via keyboard shortcuts\n" +
+            "- Automatic solo state management",
+        skills: 'Swift, SwiftUI, Core Audio, AVFoundation, iOS Development',
         githubLink: 'https://github.com/huijuhnkim/EPPA'
     },
     {
         id: 2,
         title: 'Arietta',
-        description: 'Music Application for ET/SR Practice - A consumer-facing iOS music education app that helps musicians improve ear training and sight reading skills.',
+        description: 'An iOS Music Application for ET/SR Practice - A consumer-facing music practice app that helps musicians improve ear training and sight reading skills.',
         thumbnail: 'https://huijuhnkim-portfolio-website.s3.us-east-2.amazonaws.com/arietta-thumbnail-v2.png',
         tags: ['Design', 'Audio', 'Software Engineering'],
-        fullDescription: 'Released a consumer-facing iOS music education app that helps musicians improve ear training and sight reading skills. Implemented real-time audio analysis for pitch detection using Core Audio. Implemented user authentication and data persistence through Firebase REST APIs, utilizing Firebase Auth for secure user management and Firestore for NoSQL database operations.',
+        fullDescription: 'Released a consumer-facing iOS music practice app that helps musicians improve ear training and sight reading skills. Implemented real-time audio analysis for pitch detection using Core Audio. Implemented user authentication and data persistence through Firebase REST APIs, utilizing Firebase Auth for secure user management and Firestore for NoSQL database operations.',
         skills: 'Swift, SwiftUI, UIKit, Apple Audio Toolkit Library, Google Cloud Platform',
         githubLink: 'https://github.com/huijuhnkim/arietta'
     },
@@ -41,10 +57,10 @@ The app includes a curated library of ensemble pieces with professionally record
         id: 3,
         title: 'MIDI Tokenization & Chord Progression Prediction Model',
         description:
-            'Tokenize MIDI files using NLP techniques and recognize chord progressions with machine learning frameworks such as LSTM and MusicBERT.',
+            'Tokenize MIDI files using NLP techniques and recognize chord progressions with machine learning frameworks.(LSTM and MusicBERT)',
         thumbnail: 'https://huijuhnkim-portfolio-website.s3.us-east-2.amazonaws.com/thumbnail-MIDI-analysis-prediction-model.png',
         tags: ['Software Engineering', 'Audio'],
-        fullDescription: 'Tokenize MIDI file using natural language processing techniques such as TF-IDF and regular expressions. Recognize chord progressions with machine learning techniques and frameworks such as LSTM and MusicBERT. Collaborated with a partner to develop the program, utilizing Git for version control and GitHub for code management.',
+        fullDescription: 'Tokenize MIDI file using natural language processing techniques such as TF-IDF and regular expressions. Recognize chord progressions with machine learning techniques and frameworks. (LSTM, MusicBERT) Collaborated with a partner to develop the program, utilizing Git for version control and GitHub for code management.',
         skills: 'Python, NumPy, PyTorch, Matplotlib',
         githubLink: 'https://github.com/huijuhnkim/midi-chord-prediction'
     },
