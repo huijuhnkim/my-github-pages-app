@@ -1,7 +1,10 @@
 // components/ProjectDetail.tsx
+// @ts-ignore - Lucide icons deprecation warnings
 import React, { useEffect } from 'react';
-import { X, Github, Instagram, Youtube } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { Project, Tag } from '../types';
+
+const { X, Github, Instagram, Youtube } = LucideIcons;
 
 interface ProjectDetailProps {
     project: Project;
@@ -13,6 +16,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
     const getTagColor = (tagName: string): string => {
         const tag = tags.find(t => t.name === tagName);
         return tag ? tag.color : '#666';
+    };
+
+    // Extract YouTube video ID from URL
+    const getYouTubeVideoId = (url: string): string => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : '';
     };
 
     // Prevent body scroll when modal is open
@@ -42,23 +52,35 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                 onClick={onBack}
             />
 
-        {/* Modal Content */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            {/* Modal Content */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-8 pointer-events-none">
                 <div
-                    className="bg-white rounded-lg shadow-2xl w-full max-w-2xl animate-fadeIn pointer-events-auto"
+                    className="bg-white rounded-lg shadow-2xl w-full max-w-lg animate-fadeIn pointer-events-auto"
                     onClick={(e) => e.stopPropagation()}
-                    style={{ aspectRatio: '9 / 16' }}
+                    style={{ aspectRatio: '9 / 16', maxHeight: '85vh' }}
                 >
                     <div className="h-full flex flex-col">
-                        {/* Thumbnail with close button */}
+                        {/* Thumbnail or YouTube Player */}
                         <div className="relative h-2/5 flex-shrink-0">
-                            <div className="h-full bg-gray-100 overflow-hidden">
-                                <img
-                                    src={project.thumbnail}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
+                            {project.youtubeLink && project.youtubeLink !== '#' ? (
+                                <div className="h-full bg-black">
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${getYouTubeVideoId(project.youtubeLink)}`}
+                                        title={project.title}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    />
+                                </div>
+                            ) : (
+                                <div className="h-full bg-gray-100 overflow-hidden">
+                                    <img
+                                        src={project.thumbnail}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            )}
                             <button
                                 onClick={onBack}
                                 className="absolute top-4 right-4 bg-white bg-opacity-90 rounded-full p-2 text-gray-600 hover:text-gray-900 hover:bg-opacity-100 transition-all shadow-md"
@@ -72,7 +94,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                             <div className="flex-1 p-8 overflow-y-auto">
                                 {/* Title and Tags */}
                                 <div className="mb-6">
-                                    <h2 className="text-2xl text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700 }}>
+                                    <h2 className="text-2xl text-gray-800 mb-3" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, letterSpacing: '-0.02em' }}>
                                         {project.title}
                                     </h2>
                                     <div className="flex flex-wrap gap-2">
@@ -106,13 +128,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
 
                             {/* Fixed Footer - Links */}
                             <div className="flex-shrink-0 px-8 pb-8">
-                                <div className="flex justify-end gap-4 pt-4 border-t border-gray-200">
+                                <div className="flex justify-start gap-4 pt-4 border-t border-gray-200">
                                     {project.githubLink && project.githubLink !== '#' && (
                                         <a
                                             href={project.githubLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-800 hover:text-gray-600 transition-colors"
+                                            className="text-black hover:text-gray-700 transition-colors"
                                         >
                                             <Github className="w-6 h-6" />
                                         </a>
@@ -122,7 +144,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                                             href={project.instagramLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-800 hover:text-gray-600 transition-colors"
+                                            className="text-black hover:text-gray-700 transition-colors"
                                         >
                                             <Instagram className="w-6 h-6" />
                                         </a>
@@ -132,7 +154,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, tags, onBack }) 
                                             href={project.youtubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-800 hover:text-gray-600 transition-colors"
+                                            className="text-black hover:text-gray-700 transition-colors"
                                         >
                                             <Youtube className="w-6 h-6" />
                                         </a>
