@@ -21,9 +21,17 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                                                      }) => {
     return (
         <section className="mb-12">
-            <div className="grid grid-cols-2 gap-8">
-                {/* Left Column - Tags (50% width) */}
-                <div className="col-span-1 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Search Bar - Top on mobile, Right on desktop */}
+                <div className="order-1 md:order-2 md:col-span-1 flex items-center">
+                    <SearchBar
+                        value={searchQuery}
+                        onChange={onSearchChange}
+                    />
+                </div>
+
+                {/* Tags - Bottom on mobile, Left on desktop */}
+                <div className="order-2 md:order-1 md:col-span-1 flex items-center justify-center md:justify-start">
                     <div className="flex flex-wrap gap-2">
                         {tags.map(tag => (
                             <Tag
@@ -35,14 +43,6 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                             />
                         ))}
                     </div>
-                </div>
-
-                {/* Right Column - Search Bar (50% width) */}
-                <div className="col-span-1 flex items-center">
-                    <SearchBar
-                        value={searchQuery}
-                        onChange={onSearchChange}
-                    />
                 </div>
             </div>
         </section>

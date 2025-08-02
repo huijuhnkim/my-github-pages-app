@@ -62,7 +62,7 @@ export const projects: Project[] = [
         tags: ['Software Engineering', 'Audio'],
         fullDescription: 'Tokenize MIDI file using natural language processing techniques such as TF-IDF and regular expressions. Recognize chord progressions with machine learning techniques and frameworks. (LSTM, MusicBERT) Collaborated with a partner to develop the program, utilizing Git for version control and GitHub for code management.',
         skills: 'Python, NumPy, PyTorch, Matplotlib',
-        githubLink: 'https://github.com/huijuhnkim/midi-chord-prediction'
+        githubLink: 'https://github.com/zhang-hongyi34/CS6120FinalProject'
     },
     {
         id: 4,
