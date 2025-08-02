@@ -51,7 +51,7 @@ The app includes a curated library of ensemble pieces with professionally record
     {
         id: 4,
         title: 'HoYoFair丨The Diagnosis (Genshin Impact Fan Musical)',
-        description: 'Guitar performance for a musical participation in HoYoFair2023, reaching 18M views.',
+        description: 'Guitar performance for a animated musical in HoYoFair2023, reaching 18M views.',
         thumbnail: 'https://huijuhnkim-portfolio-website.s3.us-east-2.amazonaws.com/hoyofair-thumbnail.jpg',
         tags: ['Music'],
         fullDescription: 'Recorded guitar for the musical participation in HoYoFair 2023.\n' +
