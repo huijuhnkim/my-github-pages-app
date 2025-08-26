@@ -1,5 +1,6 @@
 // App.tsx
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import ProfileSection from './components/ProfileSection';
 import FilterSection from './components/FilterSection';
@@ -10,7 +11,9 @@ import { tags } from './data/tags';
 import { personalInfo } from './data/personalInfo';
 import { Project } from './types';
 
-const App: React.FC = () => {
+const Portfolio: React.FC = () => {
+  const { filter } = useParams<{ filter?: string }>();
+  const navigate = useNavigate();
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -22,7 +25,39 @@ const App: React.FC = () => {
     link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
+
+    // Set page title
+    document.title = 'Hugh Kim';
   }, []);
+
+  // Handle URL filter parameter
+  useEffect(() => {
+    if (filter) {
+      // Check if it's a search query
+      if (filter.startsWith('search=')) {
+        const searchTerm = decodeURIComponent(filter.substring(7));
+        setSearchQuery(searchTerm);
+        setSelectedTags([]);
+      } else {
+        // Handle tag filter
+        const formattedFilter = filter.toLowerCase();
+        const matchingTag = tags.find(tag =>
+            tag.name.toLowerCase().replace(/\s+/g, '-') === formattedFilter
+        );
+
+        if (matchingTag) {
+          setSelectedTags([matchingTag.name]);
+          setSearchQuery('');
+        } else {
+          // If invalid filter, redirect to home
+          navigate('/');
+        }
+      }
+    } else {
+      setSelectedTags([]);
+      setSearchQuery('');
+    }
+  }, [filter, navigate]);
 
   // Filter projects based on selected tags and search query
   const filteredProjects = projects.filter(project => {
@@ -38,11 +73,31 @@ const App: React.FC = () => {
 
   // Toggle tag selection
   const toggleTag = (tagName: string) => {
-    setSelectedTags(prev =>
-        prev.includes(tagName)
-            ? prev.filter(t => t !== tagName)
-            : [...prev, tagName]
-    );
+    const newSelectedTags = selectedTags.includes(tagName)
+        ? selectedTags.filter(t => t !== tagName)
+        : [...selectedTags, tagName];
+
+    setSelectedTags(newSelectedTags);
+
+    // Update URL based on selection
+    if (newSelectedTags.length === 1) {
+      const urlTag = newSelectedTags[0].toLowerCase().replace(/\s+/g, '-');
+      navigate(`/${urlTag}`);
+    } else {
+      navigate('/');
+    }
+  };
+
+  // Handle search changes
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+
+    // Update URL with search query
+    if (query) {
+      navigate(`/search=${encodeURIComponent(query)}`);
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -57,7 +112,7 @@ const App: React.FC = () => {
                 selectedTags={selectedTags}
                 searchQuery={searchQuery}
                 onTagToggle={toggleTag}
-                onSearchChange={setSearchQuery}
+                onSearchChange={handleSearchChange}
             />
 
             {/* Project Card Section */}
@@ -94,6 +149,17 @@ const App: React.FC = () => {
             />
         )}
       </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+      <Router basename="/my-github-pages-app">
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          <Route path="/:filter" element={<Portfolio />} />
+        </Routes>
+      </Router>
   );
 };
 
