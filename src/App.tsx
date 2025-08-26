@@ -33,29 +33,20 @@ const Portfolio: React.FC = () => {
   // Handle URL filter parameter
   useEffect(() => {
     if (filter) {
-      // Check if it's a search query
-      if (filter.startsWith('search=')) {
-        const searchTerm = decodeURIComponent(filter.substring(7));
-        setSearchQuery(searchTerm);
-        setSelectedTags([]);
-      } else {
-        // Handle tag filter
-        const formattedFilter = filter.toLowerCase();
-        const matchingTag = tags.find(tag =>
-            tag.name.toLowerCase().replace(/\s+/g, '-') === formattedFilter
-        );
+      // Convert URL parameter to proper case and check if it's a valid tag
+      const formattedFilter = filter.toLowerCase();
+      const matchingTag = tags.find(tag =>
+          tag.name.toLowerCase().replace(/\s+/g, '-') === formattedFilter
+      );
 
-        if (matchingTag) {
-          setSelectedTags([matchingTag.name]);
-          setSearchQuery('');
-        } else {
-          // If invalid filter, redirect to home
-          navigate('/');
-        }
+      if (matchingTag) {
+        setSelectedTags([matchingTag.name]);
+      } else {
+        // If invalid filter, redirect to home
+        navigate('/');
       }
     } else {
       setSelectedTags([]);
-      setSearchQuery('');
     }
   }, [filter, navigate]);
 
@@ -88,18 +79,6 @@ const Portfolio: React.FC = () => {
     }
   };
 
-  // Handle search changes
-  const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
-
-    // Update URL with search query
-    if (query) {
-      navigate(`/search=${encodeURIComponent(query)}`);
-    } else {
-      navigate('/');
-    }
-  };
-
   return (
       <div className="min-h-screen" style={{ backgroundColor: '#FAFAF8', fontFamily: 'Inter, sans-serif' }}>
         {/* Main Content - Always rendered */}
@@ -112,7 +91,7 @@ const Portfolio: React.FC = () => {
                 selectedTags={selectedTags}
                 searchQuery={searchQuery}
                 onTagToggle={toggleTag}
-                onSearchChange={handleSearchChange}
+                onSearchChange={setSearchQuery}
             />
 
             {/* Project Card Section */}
